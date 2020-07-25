@@ -9,16 +9,14 @@ import store from "./store";
 import "./App.css";
 
 // importing components
-import Landing from "./component/layout/Landing";
-import Login from "./screens/login/Login";
-import Home from "./screens/home/Home";
-import ItemView from "./screens/itemView/itemView";
-import Admi from "./screens/admi/otherAdmi/Admi";
-import Product from "./screens/products/products";
-import Cart from "./screens/cartView/Cart";
-import Dashboard from "./screens/admi/dashboard/Dashboard";
 import PrivateRoute from "./component/widget/PrivateRoute";
-
+import Dashboard from "./screens/dashboard/Dashboard";
+import Admi from "./screens/otherAdmi/Admi";
+import AddItem from "./screens/addItem/AddItem";
+import Orders from "./screens/cart/Orders";
+import ManageAdmin from "./screens/otherAdmi/manageAdmin";
+import Product from "./screens/products/Product";
+import User from "./screens/users/User";
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -45,26 +43,16 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/item" component={ItemView} />
-            <Route exact path="/admi/dashboard" component={Dashboard} />
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/add-item" component={AddItem} />
+            <Route exact path="/customers" component={User} />
+            <Route exact path="/admin" component={ManageAdmin} />
             <Route exact path="/products" component={Product} />
-            {/* <Route exact path="/signin" component={Login} /> */}
-            <Route exact path="/admi/signin" component={Admi} />
-            <Switch>
-              <PrivateRoute exact path="/cart" component={Cart} />
-            </Switch>
-            <Route
-              exact
-              path="/signin"
-              render={(props) => <Login {...props} change="signin" />}
-            />
-            <Route
-              exact
-              path="/signup"
-              render={(props) => <Login {...props} change="signup" />}
-            />
+            <Route exact path="/signin" component={Admi} />
+            <Route exact path="/cart" component={Orders} />
+            {/* <Switch>
+              <PrivateRoute exact path="/cart" component={Orders} />
+            </Switch> */}
           </div>
         </Router>
       </Provider>

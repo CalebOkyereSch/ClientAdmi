@@ -3,20 +3,23 @@ import { Link } from "react-router-dom";
 
 export const AdmiTopNav = () => {
   return (
-    <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <img src="../images/logo.ico" width="30" height="30" alt="logo" />
-      <Link
-        className="navbar-brand col-sm-3 col-md-2 mr-0 my-4 h4"
-        to="/admi/dashboard"
-      >
-        Hemight Properties And Construction
-      </Link>
-      <input
+    <nav className="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow sticky-top">
+      <div>
+        <img src="../images/logo.ico" width="30" height="30" alt="logo" />
+        <Link
+          className="navbar-brand col-sm-3 col-md-2 mr-0 my-4 h4 my-3"
+          to="/"
+        >
+          Hemight Properties
+        </Link>
+      </div>
+
+      {/* <input
         className="form-control form-control-dark w-100"
         type="text"
         placeholder="Search"
         aria-label="Search"
-      />
+      /> */}
       <ul className="navbar-nav px-3">
         <li className="nav-item text-nowrap">
           <Link className="nav-link text-secondary h4" to="/admi/signin">
@@ -30,32 +33,13 @@ export const AdmiTopNav = () => {
 
 export const AdmiSideNav = () => {
   return (
-    <nav className="col-md-2 d-none d-md-block bg-dark sidebar">
+    <nav className="col-md-2 d-none d-md-block bg-dark sidebar position-fixed h-100">
       <div className="sidebar-sticky">
         <ul className="nav flex-column">
           <li className="nav-item">
-            <Link className="nav-link active" to="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-home"
-              >
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-            </Link>
-          </li>
-          <li className="nav-item">
             <Link
               className="nav-link text-secondary h4"
-              to="#"
+              to="/"
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -83,7 +67,7 @@ export const AdmiSideNav = () => {
           <li className="nav-item">
             <Link
               className="nav-link text-secondary h4"
-              to="#"
+              to="/add-item"
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -105,13 +89,13 @@ export const AdmiSideNav = () => {
                 <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                 <polyline points="13 2 13 9 20 9"></polyline>
               </svg>
-              Orders
+              Add Property
             </Link>
           </li>
           <li className="nav-item my-4">
             <Link
               className="nav-link text-secondary h4"
-              to="#"
+              to="/cart"
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -134,13 +118,13 @@ export const AdmiSideNav = () => {
                 <circle cx="20" cy="21" r="1"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
-              Products
+              Interests
             </Link>
           </li>
           <li className="nav-item">
             <Link
               className="nav-link text-secondary h4"
-              to="#"
+              to="/customers"
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -170,7 +154,7 @@ export const AdmiSideNav = () => {
           <li className="nav-item">
             <Link
               className="nav-link text-secondary h4"
-              to="#"
+              to="/admin"
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -193,13 +177,13 @@ export const AdmiSideNav = () => {
                 <line x1="12" y1="20" x2="12" y2="4"></line>
                 <line x1="6" y1="20" x2="6" y2="14"></line>
               </svg>
-              Reports
+              Admins
             </Link>
           </li>
           <li className="nav-item">
             <Link
               className="nav-link text-secondary h4"
-              to="#"
+              to="/products"
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -222,155 +206,7 @@ export const AdmiSideNav = () => {
                 <polyline points="2 17 12 22 22 17"></polyline>
                 <polyline points="2 12 12 17 22 12"></polyline>
               </svg>
-              Integrations
-            </Link>
-          </li>
-        </ul>
-
-        <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span classNameName="h4">Operations</span>
-          <Link className="d-flex align-items-center text-muted" to="#">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-plus-circle"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="8" x2="12" y2="16"></line>
-              <line x1="8" y1="12" x2="16" y2="12"></line>
-            </svg>
-          </Link>
-        </h6>
-        <ul className="nav flex-column mb-2">
-          <li className="nav-item">
-            <Link
-              className="nav-link text-secondary h4"
-              to="#"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-file-text"
-              >
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <polyline points="10 9 9 9 8 9"></polyline>
-              </svg>
-              Current month
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className="nav-link text-secondary h4"
-              to="#"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-file-text"
-              >
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <polyline points="10 9 9 9 8 9"></polyline>
-              </svg>
-              Last quarter
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className="nav-link text-secondary h4"
-              to="#"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-file-text"
-              >
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <polyline points="10 9 9 9 8 9"></polyline>
-              </svg>
-              Social engagement
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className="nav-link text-secondary h4"
-              to="#"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-file-text"
-              >
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <polyline points="10 9 9 9 8 9"></polyline>
-              </svg>
-              Year-end sale
+              Properties
             </Link>
           </li>
         </ul>

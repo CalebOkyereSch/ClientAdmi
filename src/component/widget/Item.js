@@ -11,8 +11,9 @@ function Item(props) {
         <div>
           <img
             className="card-img-top"
-            src={`http://localhost:5050/assets?filename=${props.picture}`}
-            alt=""
+            // src={`http://localhost:5050/assets?filename=${props.picture}`}
+            src={`../images/${props.picture}`}
+            alt="something"
           />
         </div>
         <div className="card-body">
@@ -21,23 +22,22 @@ function Item(props) {
           </h4>
           <div className={styles.itemEquip}>
             <div className={styles.info}>
-              <i class="fas fa-bed"></i>
+              <i className="fas fa-bed"></i>
               <span>{props.bedrooms}</span>
               <p>Bedrooms</p>
             </div>
             <div className={styles.info}>
-              <i class="fas fa-bath"></i>
+              <i className="fas fa-bath"></i>
               <span>{props.bathrooms}</span>
               <p>Bathrooms</p>
             </div>
             <div className={styles.info}>
-              <i class="fas fa-door-open"></i>
+              <i className="fas fa-door-open"></i>
               <span>{props.doors}</span>
               <p> Rooms</p>
             </div>
           </div>
           <h5>Ghc {props.price} </h5>
-          <p className="card-text">{props.location}</p>
         </div>
         <div
           className="card-footer"
@@ -47,15 +47,19 @@ function Item(props) {
             justifyContent: "space-between",
           }}
         >
-          <small className="text-muted">
-            &#9733; &#9733; &#9733; &#9733; &#9734;
-          </small>
           <Link
-            to="/item"
-            className="btn btn-sm btn-primary"
-            onClick={() => props.getItem(props.id)}
+            to="#"
+            className="btn btn-sm btn-danger"
+            // onClick={() => props.getItem(props.id)}
           >
-            View Product
+            Delete
+          </Link>
+          <Link
+            to="#"
+            className="btn btn-sm btn-dark"
+            // onClick={() => props.getItem(props.id)}
+          >
+            Update
           </Link>
         </div>
       </div>

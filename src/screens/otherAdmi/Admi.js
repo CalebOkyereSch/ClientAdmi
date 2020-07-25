@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { AdmiTopNav } from "../../../component/widget/AdmiNav";
-import Footer from "../../../component/layout/Footer";
+import { AdmiTopNav } from "../../component/widget/AdmiNav";
+// import Footer from "../../../component/layout/Footer";
 class Admi extends Component {
   constructor() {
     super();
@@ -64,7 +64,7 @@ class Admi extends Component {
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
