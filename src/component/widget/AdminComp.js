@@ -17,14 +17,11 @@ function AdminComp() {
       >
         <div>
           {" "}
-          <small className="form-text text-muted">Name</small>
+          <small className="form-text text-muted">Name : </small>
         </div>
         <div>
           {" "}
-          <small className="form-text text-muted">Email</small>
-        </div>
-        <div>
-          <small className="form-text text-muted">Address</small>
+          <small className="form-text text-muted">Username : </small>
         </div>
       </div>
       <div

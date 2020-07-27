@@ -5,24 +5,21 @@ export const AdmiTopNav = () => {
   return (
     <nav className="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow sticky-top">
       <div>
-        <img src="../images/logo.ico" width="30" height="30" alt="logo" />
-        <Link
-          className="navbar-brand col-sm-3 col-md-2 mr-0 my-4 h4 my-3"
-          to="/"
-        >
+        <img src="../images/logo.ico" width="20" height="20" alt="logo" />
+        <Link className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" to="/">
           Hemight Properties
         </Link>
       </div>
-
-      {/* <input
-        className="form-control form-control-dark w-100"
+      {/* 
+      <input
+        className="form-control form-control-dark w-50"
         type="text"
         placeholder="Search"
         aria-label="Search"
       /> */}
       <ul className="navbar-nav px-3">
         <li className="nav-item text-nowrap">
-          <Link className="nav-link text-secondary h4" to="/admi/signin">
+          <Link className="nav-link text-secondary" to="/signin">
             Sign out
           </Link>
         </li>
@@ -38,18 +35,19 @@ export const AdmiSideNav = () => {
         <ul className="nav flex-column">
           <li className="nav-item">
             <Link
-              className="nav-link text-secondary h4"
+              className="nav-link text-secondary "
               to="/"
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                margin: "5px",
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
+                width="20"
+                style={{ marginRight: "20px" }}
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -66,18 +64,19 @@ export const AdmiSideNav = () => {
           </li>
           <li className="nav-item">
             <Link
-              className="nav-link text-secondary h4"
+              className="nav-link text-secondary "
               to="/add-item"
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                margin: "5px",
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
+                width="20"
+                style={{ marginRight: "20px" }}
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -92,20 +91,21 @@ export const AdmiSideNav = () => {
               Add Property
             </Link>
           </li>
-          <li className="nav-item my-4">
+          <li className="nav-item ">
             <Link
-              className="nav-link text-secondary h4"
+              className="nav-link text-secondary "
               to="/cart"
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                margin: "5px",
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
+                width="20"
+                style={{ marginRight: "20px" }}
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -118,23 +118,24 @@ export const AdmiSideNav = () => {
                 <circle cx="20" cy="21" r="1"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
-              Interests
+              Orders
             </Link>
           </li>
           <li className="nav-item">
             <Link
-              className="nav-link text-secondary h4"
+              className="nav-link text-secondary "
               to="/customers"
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                margin: "5px",
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
+                width="20"
+                style={{ marginRight: "20px" }}
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -153,18 +154,19 @@ export const AdmiSideNav = () => {
           </li>
           <li className="nav-item">
             <Link
-              className="nav-link text-secondary h4"
+              className="nav-link text-secondary "
               to="/admin"
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                margin: "5px",
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
+                width="20"
+                style={{ marginRight: "20px" }}
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -182,18 +184,19 @@ export const AdmiSideNav = () => {
           </li>
           <li className="nav-item">
             <Link
-              className="nav-link text-secondary h4"
+              className="nav-link text-secondary "
               to="/products"
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                margin: "5px",
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
+                width="20"
+                style={{ marginRight: "20px" }}
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

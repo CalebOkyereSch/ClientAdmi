@@ -7,6 +7,10 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Item from "../../component/widget/Item";
 import Spinner from "../../component/widget/Spinner";
+import Scroller from "../../component/widget/Scroller";
+import db from "../../db.json";
+import Chart from "../../component/widget/Chart";
+// import Item from "../../component/widget/Item";
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getProduct();
@@ -14,30 +18,31 @@ class Dashboard extends Component {
   render() {
     const { product, loading } = this.props.product;
     return (
-      <Layout heading="Products">
+      <Layout heading="Dashboard">
+        <Chart />
         <div className="container-fluid">
-          <div className="row">
-            {product === loading ? (
-              <Spinner />
-            ) : product === null || {} ? (
-              <h1>No Product Found</h1>
-            ) : (
-              product.map((item, index) => {
+          <Scroller
+            topic="Properties"
+            buttonText="Go To Properties Page"
+            buttonLink="/products"
+          >
+            {db.Buildings.map((item, index) => {
+              if (index < 5) {
                 return (
                   <Item
                     key={index}
-                    picture={item.main}
-                    bedrooms={item.bed}
-                    bathrooms={item.bath}
+                    picture={item.picture}
+                    bedrooms={item.bedrooms}
+                    bathrooms={item.bathrooms}
                     location={item.location}
-                    doors={item.rooms}
+                    doors={item.doors}
                     price={item.price}
-                    id={item._id}
+                    id={item.id}
                   />
                 );
-              })
-            )}
-          </div>
+              }
+            })}
+          </Scroller>
         </div>
       </Layout>
     );
