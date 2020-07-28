@@ -4,13 +4,14 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../../component/widget/TextAreaFieldGroup";
 import TextAreaFieldGroup from "../../component/widget/TextAreaFieldGroup";
-import InputGroup from "../../component/widget/InputGroup";
 import SelectListGroup from "../../component/widget/SelectListGroup";
 import Layout from "../../component/layout/Layout";
+import { addProduct } from "../../actions/addProductActions";
 
-export default class AddItem extends Component {
+class AddItem extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       location: "",
       price: "",
@@ -18,11 +19,12 @@ export default class AddItem extends Component {
       type: "",
       bath: "",
       description: "",
-      main: "",
-      image: [],
+      main: null,
+      image: null,
       errors: {},
     };
-
+    this.mainOnChange = this.mainOnChange.bind(this);
+    this.imageOnChange = this.imageOnChange.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -36,7 +38,7 @@ export default class AddItem extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const profileData = {
+    const property = {
       location: this.state.location,
       price: this.state.price,
       rooms: this.state.rooms,
@@ -48,11 +50,20 @@ export default class AddItem extends Component {
       image: this.state.image,
     };
 
-    this.props.createProfile(profileData, this.props.history);
+    console.log(property);
+    this.props.addProduct(property, this.props.history);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+  mainOnChange(e) {
+    let file = e.target.files[0];
+    this.setState({ main: e.target.files[0] });
+    console.log(file);
+  }
+  imageOnChange(e) {
+    this.setState({ image: e.target.files });
   }
 
   render() {
@@ -76,7 +87,7 @@ export default class AddItem extends Component {
                 <div className="col-md-8 m-auto">
                   <h1 className="display-4 text-center">Add Property</h1>
                   <p className="lead text-center"></p>
-                  <form onSubmit={this.onSubmit} encType="multipart/form-data">
+                  <form onSubmit={this.onSubmit}>
                     <TextFieldGroup
                       placeholder="Location"
                       name="location"
@@ -88,9 +99,9 @@ export default class AddItem extends Component {
                     <SelectListGroup
                       placeholder="Type"
                       name="type"
+                      options={options}
                       value={this.state.type}
                       onChange={this.onChange}
-                      options={options}
                       error={errors.type}
                       info="Select The Type Of Product You Want To Add"
                     />
@@ -139,8 +150,9 @@ export default class AddItem extends Component {
                       <input
                         type="file"
                         name="main"
-                        accept="image/*"
+                        // accept="image/*"
                         placeholder="Choose Your Main Picture"
+                        onChange={this.mainOnChange}
                       />
                       <small className="form-text text-muted">
                         Select The Main Picture
@@ -151,7 +163,8 @@ export default class AddItem extends Component {
                         type="file"
                         name="image"
                         placeholder="Choose Your Other Pictures"
-                        accept="image/*"
+                        // accept="image/*"
+                        onChange={this.imageOnChange}
                         multiple
                       />
                       <small className="form-text text-muted">
@@ -174,3 +187,15 @@ export default class AddItem extends Component {
     );
   }
 }
+
+AddItem.propTypes = {
+  product: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { addProduct })(withRouter(AddItem));

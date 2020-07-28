@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { AdmiSideNav, AdmiTopNav } from "../widget/AdmiNav";
+import { AdmiSideNav } from "../widget/AdmiNav";
+import AdmiTopNav from "../widget/AdmiTopNav";
 import { getProduct } from "../../actions/productActions";
 import { getItem } from "../../actions/itemActions";
 import { connect } from "react-redux";

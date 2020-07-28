@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import { AdmiTopNav } from "../../component/widget/AdmiNav";
-// import Footer from "../../../component/layout/Footer";
+import AdmiTopNav from "../../component/widget/AdmiTopNav";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import { withRouter } from "react-router-dom";
+import classnames from "classnames";
+import PropTypes from "prop-types";
 class Admi extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
+      username: "",
       password: "",
       errors: {},
     };
@@ -17,19 +21,35 @@ class Admi extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const user = {
-      email: this.state.email,
+    const userData = {
+      username: this.state.username,
       password: this.state.password,
     };
-
-    console.log(user);
+    console.log(userData);
+    this.props.loginUser(userData);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+    console.log(e.target.value);
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
+  }
   render() {
+    const { errors } = this.state;
     return (
       <div>
         <AdmiTopNav />
@@ -41,13 +61,16 @@ class Admi extends Component {
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
-                    type="email"
+                    type="text"
                     className="form-control form-control-lg"
                     placeholder="Username"
-                    name="email"
-                    value={this.state.email}
+                    name="username"
+                    value={this.state.username}
                     onChange={this.onChange}
                   />
+                  {errors.username && (
+                    <div className="invalid-feedback">{errors.username}</div>
+                  )}
                 </div>
                 <div className="form-group">
                   <input
@@ -58,6 +81,9 @@ class Admi extends Component {
                     value={this.state.password}
                     onChange={this.onChange}
                   />
+                  {errors.password && (
+                    <div className="invalid-feedback">{errors.password}</div>
+                  )}
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
@@ -70,4 +96,14 @@ class Admi extends Component {
   }
 }
 
-export default Admi;
+Admi.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { loginUser })(withRouter(Admi));

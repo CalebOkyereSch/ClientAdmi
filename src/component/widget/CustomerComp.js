@@ -27,14 +27,20 @@ export default class CustomerComp extends Component {
           <div style={{ marginLeft: 20 }}>
             <div>
               {" "}
-              <small className="form-text text-muted">Name : </small>
+              <small className="form-text text-muted">
+                Name : {this.props.name}{" "}
+              </small>
             </div>
             <div>
               {" "}
-              <small className="form-text text-muted">Email : </small>
+              <small className="form-text text-muted">
+                Email : {this.props.email}{" "}
+              </small>
             </div>
             <div>
-              <small className="form-text text-muted">Address : </small>
+              <small className="form-text text-muted">
+                Date Of Registeration : {this.props.date}{" "}
+              </small>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function AdminComp() {
+function AdminComp(props) {
   return (
     <div
       className="container-fluid card-footer"
@@ -17,11 +17,13 @@ function AdminComp() {
       >
         <div>
           {" "}
-          <small className="form-text text-muted">Name : </small>
+          <small className="form-text text-muted">Name :{props.name} </small>
         </div>
         <div>
           {" "}
-          <small className="form-text text-muted">Username : </small>
+          <small className="form-text text-muted">
+            Username : {props.username}
+          </small>
         </div>
       </div>
       <div

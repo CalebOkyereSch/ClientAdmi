@@ -11,8 +11,8 @@ function Item(props) {
         <div>
           <img
             className="card-img-top"
-            // src={`http://localhost:5050/assets?filename=${props.picture}`}
-            src={`../images/${props.picture}`}
+            src={`http://localhost:5050/assets?filename=${props.picture}`}
+            // src={`../images/${props.picture}`}
             alt="something"
           />
         </div>

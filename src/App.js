@@ -36,23 +36,22 @@ if (localStorage.jwtToken) {
     window.location.href = "/signin";
   }
 }
-
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Route exact path="/" component={Dashboard} />
-            <Route exact path="/add-item" component={AddItem} />
-            <Route exact path="/customers" component={User} />
-            <Route exact path="/admin" component={ManageAdmin} />
-            <Route exact path="/products" component={Product} />
             <Route exact path="/signin" component={Admi} />
-            <Route exact path="/cart" component={Orders} />
-            {/* <Switch>
+
+            <Switch>
               <PrivateRoute exact path="/cart" component={Orders} />
-            </Switch> */}
+              <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/add-item" component={AddItem} />
+              <PrivateRoute exact path="/customers" component={User} />
+              <PrivateRoute exact path="/admin" component={ManageAdmin} />
+              <PrivateRoute exact path="/products" component={Product} />
+            </Switch>
           </div>
         </Router>
       </Provider>

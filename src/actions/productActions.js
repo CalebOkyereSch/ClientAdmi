@@ -7,12 +7,13 @@ export const getProduct = () => (dispatch) => {
   dispatch(setProductLoading());
   axios
     .get("/api/products/")
-    .then((res) =>
+    .then((res) => {
+      console.log(res.data);
       dispatch({
         type: GET_PRODUCT,
         payload: res.data,
-      })
-    )
+      });
+    })
     .catch((err) =>
       dispatch({
         type: GET_PRODUCT,

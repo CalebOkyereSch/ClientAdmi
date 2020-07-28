@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import Layout from "../../component/layout/Layout";
 import { getProduct } from "../../actions/productActions";
-import { getItem } from "../../actions/itemActions";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Item from "../../component/widget/Item";
 import Spinner from "../../component/widget/Spinner";
 import Scroller from "../../component/widget/Scroller";
-import db from "../../db.json";
 import Chart from "../../component/widget/Chart";
-// import Item from "../../component/widget/Item";
+
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getProduct();
@@ -26,22 +24,28 @@ class Dashboard extends Component {
             buttonText="Go To Properties Page"
             buttonLink="/products"
           >
-            {db.Buildings.map((item, index) => {
-              if (index < 5) {
-                return (
-                  <Item
-                    key={index}
-                    picture={item.picture}
-                    bedrooms={item.bedrooms}
-                    bathrooms={item.bathrooms}
-                    location={item.location}
-                    doors={item.doors}
-                    price={item.price}
-                    id={item.id}
-                  />
-                );
-              }
-            })}
+            {product === loading ? (
+              <Spinner />
+            ) : product === null ? (
+              <h3>No Properties Found</h3>
+            ) : (
+              product.map((item, index) => {
+                if (index < 6) {
+                  return (
+                    <Item
+                      key={index}
+                      picture={item.main}
+                      bedrooms={item.bed}
+                      bathrooms={item.bath}
+                      location={item.location}
+                      doors={item.rooms}
+                      price={item.price}
+                      id={item._id}
+                    />
+                  );
+                }
+              })
+            )}
           </Scroller>
         </div>
       </Layout>
@@ -54,7 +58,6 @@ Dashboard.propTypes = {
   auth: PropTypes.object.isRequired,
   product: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  getItem: PropTypes.func.isRequired,
 };
 
 const mapStateToProp = (state) => ({
@@ -63,6 +66,4 @@ const mapStateToProp = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProp, { getProduct, getItem })(
-  withRouter(Dashboard)
-);
+export default connect(mapStateToProp, { getProduct })(withRouter(Dashboard));
