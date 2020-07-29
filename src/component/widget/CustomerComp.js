@@ -1,6 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-export default class CustomerComp extends Component {
+import { Link, withRouter } from "react-router-dom";
+import { deleteCustomer } from "../../actions/customerActions";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+class CustomerComp extends Component {
   render() {
     return (
       <div
@@ -19,7 +23,7 @@ export default class CustomerComp extends Component {
           <div>
             <img
               className="card-img-top"
-              src={`../images/1.jpg`}
+              src={this.props.picture}
               alt="something"
               style={{ height: "70px", width: "70px", borderRadius: "100px" }}
             />
@@ -59,17 +63,22 @@ export default class CustomerComp extends Component {
             style={{
               margin: "5px 20px 0px 0px",
             }}
-            // onClick={() => props.getItem(props.id)}
+            onClick={() => {
+              this.props.deleteCustomer(this.props.id);
+              window.location.reload(false);
+            }}
           >
             Delete
           </Link>
           <Link
-            to="#"
+            to="/update-customer"
             className="btn btn-sm btn-dark"
             style={{
               margin: "5px 20px 0px 0px",
             }}
-            // onClick={() => props.getItem(props.id)}
+            // onClick={() =>
+            //   this.props.deleteCustomer(this.props.id, this.props.history)
+            // }
           >
             Update
           </Link>
@@ -78,3 +87,9 @@ export default class CustomerComp extends Component {
     );
   }
 }
+
+CustomerComp.propTypes = {
+  deleteCustomer: PropTypes.func.isRequired,
+};
+
+export default connect(null, { deleteCustomer })(withRouter(CustomerComp));

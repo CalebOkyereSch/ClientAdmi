@@ -19,6 +19,7 @@ class AddItem extends Component {
       type: "",
       bath: "",
       description: "",
+      status: "",
       main: null,
       image: null,
       errors: {},
@@ -38,20 +39,36 @@ class AddItem extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const property = {
-      location: this.state.location,
-      price: this.state.price,
-      rooms: this.state.rooms,
-      bed: this.state.bed,
-      type: this.state.type,
-      bath: this.state.bath,
-      description: this.state.description,
-      main: this.state.main,
-      image: this.state.image,
-    };
+    // const property = {
+    //   location: this.state.location,
+    //   price: this.state.price,
+    //   rooms: this.state.rooms,
+    //   bed: this.state.bed,
+    //   status: this.state.status,
+    //   type: this.state.type,
+    //   bath: this.state.bath,
+    //   description: this.state.description,
+    //   main: this.state.main,
+    //   image: this.state.image,
+    // };
 
-    console.log(property);
-    this.props.addProduct(property, this.props.history);
+    const formData = new FormData();
+
+    formData.append("location", this.state.location);
+    formData.append("status", this.state.status);
+    formData.append("price", this.state.price);
+    formData.append("rooms", this.state.rooms);
+    formData.append("bed", this.state.bed);
+    formData.append("type", this.state.type);
+    formData.append("bath", this.state.bath);
+    formData.append("description", this.state.description);
+    formData.append("main", this.state.main);
+    // formData.append("image", );
+    this.state.image.forEach((image) => {
+      formData.append("image", image);
+    });
+
+    this.props.addProduct(formData, this.props.history);
   }
 
   onChange(e) {
@@ -59,11 +76,12 @@ class AddItem extends Component {
   }
   mainOnChange(e) {
     let file = e.target.files[0];
-    this.setState({ main: e.target.files[0] });
-    console.log(file);
+    this.setState({ main: file });
   }
+
   imageOnChange(e) {
-    this.setState({ image: e.target.files });
+    let file = e.target.files;
+    this.setState({ image: [...file] });
   }
 
   render() {
@@ -96,10 +114,9 @@ class AddItem extends Component {
                       error={errors.location}
                       info="Provide The Location Of The Property"
                     />
-                    <SelectListGroup
+                    <TextFieldGroup
                       placeholder="Type"
                       name="type"
-                      options={options}
                       value={this.state.type}
                       onChange={this.onChange}
                       error={errors.type}
@@ -112,6 +129,15 @@ class AddItem extends Component {
                       onChange={this.onChange}
                       error={errors.price}
                       info="Provide The Price For The Property"
+                    />
+                    <SelectListGroup
+                      options={options}
+                      placeholder="Status"
+                      name="status"
+                      value={this.state.status}
+                      onChange={this.onChange}
+                      error={errors.status}
+                      info="Provide Status"
                     />
                     <TextFieldGroup
                       placeholder="Rooms"
@@ -150,7 +176,7 @@ class AddItem extends Component {
                       <input
                         type="file"
                         name="main"
-                        // accept="image/*"
+                        accept="image/*"
                         placeholder="Choose Your Main Picture"
                         onChange={this.mainOnChange}
                       />
@@ -163,7 +189,7 @@ class AddItem extends Component {
                         type="file"
                         name="image"
                         placeholder="Choose Your Other Pictures"
-                        // accept="image/*"
+                        accept="image/*"
                         onChange={this.imageOnChange}
                         multiple
                       />
@@ -189,12 +215,10 @@ class AddItem extends Component {
 }
 
 AddItem.propTypes = {
-  product: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  addProduct: PropTypes.func.isRequired,
 };
-
 const mapStateToProps = (state) => ({
-  profile: state.profile,
   errors: state.errors,
 });
 

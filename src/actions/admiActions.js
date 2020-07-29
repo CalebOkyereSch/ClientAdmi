@@ -1,6 +1,12 @@
 import axios from "axios";
 
-import { GET_ERRORS, GET_ADMI, ADMI_LOADING } from "./types";
+import {
+  GET_ERRORS,
+  GET_ADMI,
+  ADMI_LOADING,
+  DELETE_ADMI,
+  ADD_ADMI,
+} from "./types";
 
 export const getAdmi = () => (dispatch) => {
   dispatch(setAdmiLoading());
@@ -20,6 +26,32 @@ export const getAdmi = () => (dispatch) => {
     );
 };
 
+export const addAdmi = (admi, history) => (dispatch) => {
+  dispatch(setAdmiLoading());
+  axios.post("api/admi/others", admi).then((res) => {
+    dispatch({
+      type: ADD_ADMI,
+    });
+    history.push("/admin");
+  });
+};
+
+export const deleteAdmi = (id) => (dispatch) => {
+  axios
+    .delete(`api/admi/others/${id}`)
+    .then((res) => {
+      dispatch({
+        type: GET_ADMI,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
 export const setAdmiLoading = () => {
   return {
     type: ADMI_LOADING,

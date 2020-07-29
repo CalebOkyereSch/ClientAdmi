@@ -1,32 +1,21 @@
-import {
-  DELETE_CUSTOMER,
-  CUSTOMER_LOADING,
-  GET_CUSTOMERS,
-  GET_ERRORS,
-} from "../actions/types";
+import { ORDER_LOADING, GET_ORDER } from "../actions/types";
 
 const initialState = {
   loading: false,
-  customers: null,
+  order: null,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case CUSTOMER_LOADING:
+    case ORDER_LOADING:
       return {
         ...state,
         loading: true,
       };
-    case GET_CUSTOMERS:
+    case GET_ORDER:
       return {
         ...state,
-        customers: action.payload,
-        loading: false,
-      };
-
-    case GET_ERRORS:
-      return {
-        ...state,
+        order: action.payload,
         loading: false,
       };
 

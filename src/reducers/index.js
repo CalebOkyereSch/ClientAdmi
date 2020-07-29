@@ -6,6 +6,7 @@ import cartReducer from "./cartReducer";
 import itemReducer from "./itemReducer";
 import customerReducer from "./customerReducers";
 import admiReducer from "./admiReducer";
+import orderReducer from "./orderReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
   item: itemReducer,
   customers: customerReducer,
   admi: admiReducer,
+  order: orderReducer,
 });

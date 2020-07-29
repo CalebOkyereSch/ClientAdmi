@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PRODUCT, PRODUCT_LOADING } from "./types";
+import { GET_PRODUCT, PRODUCT_LOADING, DELETE_PRODUCT } from "./types";
 
 // get current user cart
 
@@ -8,7 +8,6 @@ export const getProduct = () => (dispatch) => {
   axios
     .get("/api/products/")
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: GET_PRODUCT,
         payload: res.data,
@@ -20,6 +19,22 @@ export const getProduct = () => (dispatch) => {
         payload: {},
       })
     );
+};
+export const deleteProduct = (id) => (dispatch) => {
+  axios
+    .delete(`api/admi/product/${id}`)
+    .then((res) => {
+      dispatch({
+        type: DELETE_PRODUCT,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: DELETE_PRODUCT,
+        payload: err.response.data,
+      });
+    });
 };
 
 // Cart Loading

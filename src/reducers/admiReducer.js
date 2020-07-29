@@ -1,4 +1,10 @@
-import { ADMI_LOADING, GET_ADMI } from "../actions/types";
+import {
+  ADMI_LOADING,
+  GET_ADMI,
+  DELETE_ADMI,
+  GET_ERRORS,
+  ADD_ADMI,
+} from "../actions/types";
 
 const initialState = {
   loading: false,
@@ -16,6 +22,17 @@ export default function (state = initialState, action) {
       return {
         ...state,
         admi: action.payload,
+        loading: false,
+      };
+
+    case GET_ERRORS:
+      return {
+        ...state,
+        customers: {},
+      };
+    case ADD_ADMI:
+      return {
+        ...state,
         loading: false,
       };
 

@@ -23,20 +23,18 @@ class Products extends Component {
               <h3>No Properties Found</h3>
             ) : (
               product.map((item, index) => {
-                if (index < 6) {
-                  return (
-                    <Item
-                      key={index}
-                      picture={item.main}
-                      bedrooms={item.bed}
-                      bathrooms={item.bath}
-                      location={item.location}
-                      doors={item.rooms}
-                      price={item.price}
-                      id={item._id}
-                    />
-                  );
-                }
+                return (
+                  <Item
+                    key={index}
+                    picture={item.main}
+                    bedrooms={item.bed}
+                    bathrooms={item.bath}
+                    location={item.location}
+                    doors={item.rooms}
+                    price={item.price}
+                    id={item._id}
+                  />
+                );
               })
             )}
           </div>

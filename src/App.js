@@ -17,6 +17,10 @@ import Orders from "./screens/cart/Orders";
 import ManageAdmin from "./screens/otherAdmi/manageAdmin";
 import Product from "./screens/products/Product";
 import User from "./screens/users/User";
+import PropertyUpdate from "./screens/updatePages/PropertyUpdate";
+import CustomerUpdate from "./screens/updatePages/CustomerUpdate";
+import AdmiUpdate from "./screens/updatePages/AdmiUpdate";
+import AddAdmi from "./screens/otherAdmi/AddAdmi";
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -51,6 +55,18 @@ class App extends Component {
               <PrivateRoute exact path="/customers" component={User} />
               <PrivateRoute exact path="/admin" component={ManageAdmin} />
               <PrivateRoute exact path="/products" component={Product} />
+              <PrivateRoute exact path="/add-admi" component={AddAdmi} />
+              <PrivateRoute
+                exact
+                path="/update-product"
+                component={PropertyUpdate}
+              />
+              <PrivateRoute exact path="/update-admi" component={AdmiUpdate} />
+              <PrivateRoute
+                exact
+                path="/update-customer"
+                component={CustomerUpdate}
+              />
             </Switch>
           </div>
         </Router>

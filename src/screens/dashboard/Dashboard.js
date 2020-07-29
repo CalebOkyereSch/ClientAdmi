@@ -4,7 +4,7 @@ import { getProduct } from "../../actions/productActions";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import Item from "../../component/widget/Item";
+import DashItem from "../../component/widget/DashItem";
 import Spinner from "../../component/widget/Spinner";
 import Scroller from "../../component/widget/Scroller";
 import Chart from "../../component/widget/Chart";
@@ -32,7 +32,7 @@ class Dashboard extends Component {
               product.map((item, index) => {
                 if (index < 6) {
                   return (
-                    <Item
+                    <DashItem
                       key={index}
                       picture={item.main}
                       bedrooms={item.bed}

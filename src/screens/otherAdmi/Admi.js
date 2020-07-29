@@ -25,13 +25,12 @@ class Admi extends Component {
       username: this.state.username,
       password: this.state.password,
     };
-    console.log(userData);
+
     this.props.loginUser(userData);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target.value);
   }
 
   componentDidMount() {

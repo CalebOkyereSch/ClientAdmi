@@ -1,8 +1,9 @@
-import { GET_PRODUCT, PRODUCT_LOADING } from "../actions/types";
+import { GET_PRODUCT, PRODUCT_LOADING, DELETE_PRODUCT } from "../actions/types";
 
 const initialState = {
   loading: false,
   product: null,
+  message: null,
 };
 
 export default function (state = initialState, action) {
@@ -16,6 +17,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         product: action.payload,
+        loading: false,
+      };
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        message: action.payload,
         loading: false,
       };
 

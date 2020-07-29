@@ -4,9 +4,10 @@ import { GET_ERRORS } from "./types";
 
 export const addProduct = (product, history) => (dispatch) => {
   axios
-    .post("/api/admi/product", product)
+    .post("/api/admi/product", product, {
+      "Content-Type": "multipart/form-data",
+    })
     .then((res) => {
-      console.log(res);
       history.push("/products");
     })
     .catch((err) =>

@@ -16,19 +16,28 @@ class ManageAdmin extends Component {
     const { admi, loading } = this.props.admi;
     return (
       <Layout heading="Manage Admins">
-        <Link to="#" className="btn btn-md btn-dark" style={{ margin: "10px" }}>
+        <Link
+          to="/add-admi"
+          className="btn btn-md btn-dark"
+          style={{ margin: "10px" }}
+        >
           Add New Adminstrator
         </Link>
         <div className="container-fluid">
           {admi === loading ? (
             <Spinner />
           ) : admi === null ? (
-            <h3>No User Found</h3>
+            <h3>No Administrator Found </h3>
           ) : (
             admi.map((item, index) => {
-              if (index < 6) {
-                return <AdminComp name={item.name} username={item.username} />;
-              }
+              return (
+                <AdminComp
+                  name={item.name}
+                  username={item.username}
+                  id={item._id}
+                  key={index}
+                />
+              );
             })
           )}
         </div>
@@ -44,7 +53,6 @@ ManageAdmin.propTypes = {
 };
 
 const mapStateToProp = (state) => {
-  console.log(state);
   return {
     admi: state.admi,
     errors: state.errors,

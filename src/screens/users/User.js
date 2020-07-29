@@ -22,9 +22,12 @@ class User extends Component {
             <h3>No User Found</h3>
           ) : (
             customers.map((item, index) => {
+              console.log(item);
               if (index < 6) {
                 return (
                   <CustomerComp
+                    picture={item.avatar}
+                    id={item._id}
                     name={item.name}
                     date={item.date}
                     email={item.email}
@@ -45,7 +48,6 @@ User.propTypes = {
 };
 
 const mapStateToProp = (state) => {
-  console.log(state);
   return {
     customers: state.customers,
     errors: state.errors,
