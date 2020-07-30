@@ -22,18 +22,16 @@ class User extends Component {
             <h3>No User Found</h3>
           ) : (
             customers.map((item, index) => {
-              console.log(item);
-              if (index < 6) {
-                return (
-                  <CustomerComp
-                    picture={item.avatar}
-                    id={item._id}
-                    name={item.name}
-                    date={item.date}
-                    email={item.email}
-                  />
-                );
-              }
+              return (
+                <CustomerComp
+                  picture={item.avatar}
+                  id={item._id}
+                  name={item.name}
+                  date={item.date}
+                  key={index}
+                  email={item.email}
+                />
+              );
             })
           )}
         </div>

@@ -58,7 +58,7 @@ class Item extends Component {
               Delete
             </Link>
             <Link
-              to="#"
+              to="/update-product"
               className="btn btn-sm btn-dark"
               // onClick={() => this.props.getItem(this.props.id)}
             >

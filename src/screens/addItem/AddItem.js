@@ -38,20 +38,6 @@ class AddItem extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
-    // const property = {
-    //   location: this.state.location,
-    //   price: this.state.price,
-    //   rooms: this.state.rooms,
-    //   bed: this.state.bed,
-    //   status: this.state.status,
-    //   type: this.state.type,
-    //   bath: this.state.bath,
-    //   description: this.state.description,
-    //   main: this.state.main,
-    //   image: this.state.image,
-    // };
-
     const formData = new FormData();
 
     formData.append("location", this.state.location);
@@ -63,7 +49,7 @@ class AddItem extends Component {
     formData.append("bath", this.state.bath);
     formData.append("description", this.state.description);
     formData.append("main", this.state.main);
-    // formData.append("image", );
+
     this.state.image.forEach((image) => {
       formData.append("image", image);
     });
@@ -89,10 +75,16 @@ class AddItem extends Component {
 
     // Select options for type
     const options = [
-      { label: "* Selet Type Of Product", value: 0 },
-      { label: "Land", value: "Land" },
+      { label: "* Select Status Of Product", value: 0 },
       { label: "Rent", value: "Rent" },
       { label: "Buy", value: "Buy" },
+      { label: "Other", value: "Other" },
+    ];
+    const option1 = [
+      { label: "* Select Type Of Product", value: 0 },
+      { label: "Housing", value: "Housing" },
+      { label: "Land", value: "Land" },
+      { label: "Apartment", value: "Apartment" },
       { label: "Other", value: "Other" },
     ];
 
@@ -114,13 +106,14 @@ class AddItem extends Component {
                       error={errors.location}
                       info="Provide The Location Of The Property"
                     />
-                    <TextFieldGroup
+                    <SelectListGroup
+                      options={option1}
                       placeholder="Type"
                       name="type"
                       value={this.state.type}
                       onChange={this.onChange}
-                      error={errors.type}
-                      info="Select The Type Of Product You Want To Add"
+                      error={errors.status}
+                      info="Provide The Type Of Products "
                     />
                     <TextFieldGroup
                       placeholder="Price"
