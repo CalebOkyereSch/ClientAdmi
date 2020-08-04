@@ -8,6 +8,7 @@ import DashItem from "../../component/widget/DashItem";
 import Spinner from "../../component/widget/Spinner";
 import Scroller from "../../component/widget/Scroller";
 import Chart from "../../component/widget/Chart";
+import isEmpty from "../../isEmpty";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ class Dashboard extends Component {
           >
             {product === loading ? (
               <Spinner />
-            ) : product === null ? (
+            ) : isEmpty(product) ? (
               <h3>No Properties Found</h3>
             ) : (
               product.map((item, index) => {

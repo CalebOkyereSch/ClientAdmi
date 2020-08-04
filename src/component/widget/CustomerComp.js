@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { deleteCustomer } from "../../actions/customerActions";
+import { deleteCustomer, setCusUpdate } from "../../actions/customerActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 class CustomerComp extends Component {
+  onClick() {
+    let data = {
+      id: this.props.id,
+      name: this.props.name,
+      email: this.props.email,
+    };
+
+    this.props.setCusUpdate(data);
+  }
   render() {
     return (
       <div
@@ -76,9 +85,7 @@ class CustomerComp extends Component {
             style={{
               margin: "5px 20px 0px 0px",
             }}
-            // onClick={() =>
-            //   this.props.deleteCustomer(this.props.id, this.props.history)
-            // }
+            onClick={() => this.onClick()}
           >
             Update
           </Link>
@@ -90,6 +97,9 @@ class CustomerComp extends Component {
 
 CustomerComp.propTypes = {
   deleteCustomer: PropTypes.func.isRequired,
+  setCusUpdate: PropTypes.func.isRequired,
 };
 
-export default connect(null, { deleteCustomer })(withRouter(CustomerComp));
+export default connect(null, { deleteCustomer, setCusUpdate })(
+  withRouter(CustomerComp)
+);

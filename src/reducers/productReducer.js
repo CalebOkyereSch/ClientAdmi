@@ -3,7 +3,6 @@ import { GET_PRODUCT, PRODUCT_LOADING, DELETE_PRODUCT } from "../actions/types";
 const initialState = {
   loading: false,
   product: null,
-  message: null,
 };
 
 export default function (state = initialState, action) {

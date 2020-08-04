@@ -4,8 +4,8 @@ import {
   GET_ERRORS,
   GET_ADMI,
   ADMI_LOADING,
-  DELETE_ADMI,
   ADD_ADMI,
+  GET_UPDATE_ADMI,
 } from "./types";
 
 export const getAdmi = () => (dispatch) => {
@@ -52,6 +52,31 @@ export const deleteAdmi = (id) => (dispatch) => {
       });
     });
 };
+
+export const setAdmiUpdate = (data) => (dispatch) => {
+  return dispatch({
+    type: GET_UPDATE_ADMI,
+    payload: data,
+  });
+};
+
+export const updateAdmi = (data, id, history) => (dispatch) => {
+  axios
+    .post(`api/admi/update/${id}`, data)
+    .then((res) => {
+      dispatch({
+        type: ADD_ADMI,
+      });
+      history.push("/admin");
+    })
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+};
+
 export const setAdmiLoading = () => {
   return {
     type: ADMI_LOADING,

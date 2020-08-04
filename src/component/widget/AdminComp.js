@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { deleteAdmi } from "../../actions/admiActions";
+import { deleteAdmi, setAdmiUpdate } from "../../actions/admiActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 class AdminComp extends Component {
+  onClick() {
+    let data = {
+      id: this.props.id,
+      name: this.props.name,
+      username: this.props.username,
+    };
+
+    this.props.setAdmiUpdate(data);
+  }
+
   render() {
     return (
       <div
@@ -62,7 +72,7 @@ class AdminComp extends Component {
             style={{
               margin: "5px 20px 0px 0px",
             }}
-            // onClick={() => this.props.getItem(this.props.id)}
+            onClick={() => this.onClick()}
           >
             Update
           </Link>
@@ -74,6 +84,9 @@ class AdminComp extends Component {
 
 AdminComp.propTypes = {
   deleteAdmi: PropTypes.func.isRequired,
+  setAdmiUpdate: PropTypes.func.isRequired,
 };
 
-export default connect(null, { deleteAdmi })(withRouter(AdminComp));
+export default connect(null, { deleteAdmi, setAdmiUpdate })(
+  withRouter(AdminComp)
+);

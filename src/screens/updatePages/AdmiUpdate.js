@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import Layout from "../../component/layout/Layout";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { updateAdmi } from "../../actions/admiActions";
+import PropTypes from "prop-types";
 
 class AdmiUpdate extends Component {
   constructor() {
@@ -16,21 +20,31 @@ class AdmiUpdate extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
-
+    const { admiUpdate } = this.props.admi;
     const userData = {
       name: this.state.name,
       username: this.state.username,
       password: this.state.password,
     };
 
-    // this.props.loginUser(userData);
+    this.props.updateAdmi(userData, admiUpdate.id, this.props.history);
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  componentWillMount() {
+    const { admiUpdate } = this.props.admi;
+    if (admiUpdate) {
+      this.setState({
+        name: admiUpdate.name,
+        username: admiUpdate.username,
+      });
+    }
+  }
+
   render() {
-    // const { errors } = this.state;
+    const { admi } = this.props.admi;
     return (
       <Layout>
         <div className="container-fluid">
@@ -46,10 +60,6 @@ class AdmiUpdate extends Component {
                 value={this.state.name}
                 onChange={this.onChange}
               />
-
-              {/* {errors.username && (
-                <div className="invalid-feedback">{errors.username}</div>
-              )} */}
             </div>
             <div className="form-group">
               <input
@@ -63,16 +73,13 @@ class AdmiUpdate extends Component {
             </div>
             <div className="form-group">
               <input
-                type="password"
+                type="text"
                 className="form-control form-control-lg"
                 placeholder="Password"
                 name="password"
                 value={this.state.password}
                 onChange={this.onChange}
               />
-              {/* {errors.password && (
-                <div className="invalid-feedback">{errors.password}</div>
-              )} */}
             </div>
             <input
               type="submit"
@@ -86,16 +93,17 @@ class AdmiUpdate extends Component {
   }
 }
 
-export default AdmiUpdate;
+AdmiUpdate.propTypes = {
+  admi: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  updateAdmi: PropTypes.func.isRequired,
+};
 
-// AdmiUpdate.propTypes = {
-//     auth: PropTypes.object.isRequired,
-//     errors: PropTypes.object.isRequired,
-//     loginUser: PropTypes.func.isRequired,
-//   };
-//   const mapStateToProps = (state) => ({
-//     auth: state.auth,
-//     errors: state.errors,
-//   });
+const mapStateToProp = (state) => {
+  return {
+    admi: state.admi,
+    errors: state.errors,
+  };
+};
 
-//   export default connect(mapStateToProps, { loginUser })(withRouter(AdmiUpdate));
+export default connect(mapStateToProp, { updateAdmi })(withRouter(AdmiUpdate));

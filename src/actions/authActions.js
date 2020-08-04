@@ -19,19 +19,17 @@ export const loginUser = (userData, history) => (dispatch) => {
       setAuthToken(token);
 
       // Decode token to get user data
-      console.log(token);
       const decoded = jwt_decode(token);
       // alo coding
       getCurrentUser(decoded);
 
       // set current user
       dispatch(setCurrentUser(decoded));
-      history("/");
     })
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
-        payload: err,
+        payload: err.response.data,
       })
     );
 };
@@ -44,6 +42,7 @@ export const setCurrentUser = (decoded) => {
     payload: decoded,
   };
 };
+
 // alo coding
 export let User = {};
 

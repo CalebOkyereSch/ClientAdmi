@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Spinner from "../../component/widget/Spinner";
 import PropTypes from "prop-types";
+import isEmpty from "../../isEmpty";
 
 class Orders extends Component {
   componentDidMount() {
@@ -17,9 +18,9 @@ class Orders extends Component {
     return (
       <Layout heading="Orders">
         <div className="container-fluid row">
-          {loading ? (
+          {order === loading ? (
             <Spinner />
-          ) : order === null || {} ? (
+          ) : isEmpty(order) || {} ? (
             <h3>No Interest Has Been Shown On Properties</h3>
           ) : (
             order.map((item, index) => {

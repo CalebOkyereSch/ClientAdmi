@@ -33,7 +33,7 @@ class AddAdmi extends Component {
   }
 
   render() {
-    // const { errors } = this.state;
+    const { errors } = this.state;
     return (
       <Layout>
         <div className="container-fluid">
@@ -50,9 +50,7 @@ class AddAdmi extends Component {
                 onChange={this.onChange}
               />
 
-              {/* {errors.username && (
-                <div className="invalid-feedback">{errors.username}</div>
-              )} */}
+              {errors.username ? <div>{errors.username}</div> : ""}
             </div>
             <div className="form-group">
               <input
@@ -73,9 +71,7 @@ class AddAdmi extends Component {
                 value={this.state.password}
                 onChange={this.onChange}
               />
-              {/* {errors.password && (
-                <div className="invalid-feedback">{errors.password}</div>
-              )} */}
+              {errors.password ? <div>{errors.password}</div> : ""}
             </div>
             <input
               type="submit"

@@ -5,6 +5,8 @@ import {
   GET_ERRORS,
   GET_CUSTOMERS,
   CUSTOMER_LOADING,
+  UPDATE_CUSTOMER,
+  GET_UPDATE_CUSTOMER,
 } from "./types";
 
 export const getCustomers = () => (dispatch) => {
@@ -41,6 +43,30 @@ export const deleteCustomer = (id) => (dispatch) => {
       });
     });
 };
+export const updateCustomer = (data, id, history) => (dispatch) => {
+  axios
+    .post(`api/admi/user/update/${id}`, data)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_CUSTOMER,
+      });
+      history.push("/customers");
+    })
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+};
+
+export const setCusUpdate = (data) => (dispatch) => {
+  return dispatch({
+    type: GET_UPDATE_CUSTOMER,
+    payload: data,
+  });
+};
+
 export const setCustomerLoading = () => {
   return {
     type: CUSTOMER_LOADING,

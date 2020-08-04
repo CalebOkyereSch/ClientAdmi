@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Spinner from "../../component/widget/Spinner";
 import Item from "../../component/widget/Item";
+import isEmpty from "../../isEmpty";
 
 class Products extends Component {
   componentDidMount() {
@@ -19,7 +20,7 @@ class Products extends Component {
           <div className="row">
             {product === loading ? (
               <Spinner />
-            ) : product === null ? (
+            ) : isEmpty(product) ? (
               <h3>No Properties Found</h3>
             ) : (
               product.map((item, index) => {

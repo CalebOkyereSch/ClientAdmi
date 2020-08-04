@@ -67,8 +67,18 @@ class Admi extends Component {
                     value={this.state.username}
                     onChange={this.onChange}
                   />
-                  {errors.username && (
-                    <div className="invalid-feedback">{errors.username}</div>
+                  {errors.username ? (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        fontSize: "11px",
+                        color: "red",
+                      }}
+                    >
+                      {errors.username}
+                    </div>
+                  ) : (
+                    ""
                   )}
                 </div>
                 <div className="form-group">
@@ -80,8 +90,18 @@ class Admi extends Component {
                     value={this.state.password}
                     onChange={this.onChange}
                   />
-                  {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
+                  {errors.password ? (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        fontSize: "11px",
+                        color: "red",
+                      }}
+                    >
+                      {errors.password}
+                    </div>
+                  ) : (
+                    ""
                   )}
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />

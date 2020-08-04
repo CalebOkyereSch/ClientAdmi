@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Spinner from "../../component/widget/Spinner";
 import PropTypes from "prop-types";
+import isEmpty from "../../isEmpty";
 class ManageAdmin extends Component {
   componentDidMount() {
     this.props.getAdmi();
@@ -26,7 +27,7 @@ class ManageAdmin extends Component {
         <div className="container-fluid">
           {admi === loading ? (
             <Spinner />
-          ) : admi === null ? (
+          ) : isEmpty(admi) ? (
             <h3>No Administrator Found </h3>
           ) : (
             admi.map((item, index) => {

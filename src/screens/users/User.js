@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Spinner from "../../component/widget/Spinner";
 import PropTypes from "prop-types";
+import isEmpty from "../../isEmpty";
 
 class User extends Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class User extends Component {
         <div className="container-fluid">
           {customers === loading ? (
             <Spinner />
-          ) : customers === null ? (
+          ) : isEmpty(customers) ? (
             <h3>No User Found</h3>
           ) : (
             customers.map((item, index) => {

@@ -7,7 +7,8 @@ import TextAreaFieldGroup from "../../component/widget/TextAreaFieldGroup";
 import SelectListGroup from "../../component/widget/SelectListGroup";
 import Layout from "../../component/layout/Layout";
 import { addProduct } from "../../actions/addProductActions";
-
+import validateProductAdd from "../../validation/addProperty";
+import isEmpty from "../../isEmpty";
 class AddItem extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +19,7 @@ class AddItem extends Component {
       rooms: "",
       type: "",
       bath: "",
+      bed: "",
       description: "",
       status: "",
       main: null,
@@ -30,31 +32,45 @@ class AddItem extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-  }
-
   onSubmit(e) {
     e.preventDefault();
-    const formData = new FormData();
+    let product = {
+      location: this.state.location,
+      price: this.state.price,
+      rooms: this.state.rooms,
+      type: this.state.type,
+      bath: this.state.bath,
+      bed: this.state.bed,
+      description: this.state.description,
+      status: this.state.status,
+      main: this.state.main,
+      image: this.state.image,
+    };
 
-    formData.append("location", this.state.location);
-    formData.append("status", this.state.status);
-    formData.append("price", this.state.price);
-    formData.append("rooms", this.state.rooms);
-    formData.append("bed", this.state.bed);
-    formData.append("type", this.state.type);
-    formData.append("bath", this.state.bath);
-    formData.append("description", this.state.description);
-    formData.append("main", this.state.main);
+    const { err, isValid } = validateProductAdd(product);
 
-    this.state.image.forEach((image) => {
-      formData.append("image", image);
-    });
+    if (!isValid) {
+      this.setState({ errors: err });
+    } else {
+      const formData = new FormData();
 
-    this.props.addProduct(formData, this.props.history);
+      formData.append("location", this.state.location);
+      formData.append("status", this.state.status);
+      formData.append("price", this.state.price);
+      formData.append("rooms", this.state.rooms);
+      formData.append("bed", this.state.bed);
+      formData.append("type", this.state.type);
+      formData.append("bath", this.state.bath);
+      formData.append("description", this.state.description);
+      formData.append("main", this.state.main);
+
+      if (!isEmpty(this.state.image)) {
+        this.state.image.forEach((image) => {
+          formData.append("image", image);
+        });
+      }
+      this.props.addProduct(formData, this.props.history);
+    }
   }
 
   onChange(e) {
@@ -70,18 +86,24 @@ class AddItem extends Component {
     this.setState({ image: [...file] });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   render() {
     const { errors } = this.state;
 
     // Select options for type
     const options = [
-      { label: "* Select Status Of Product", value: 0 },
+      { label: "* Select Status Of Product", value: "" },
       { label: "Rent", value: "Rent" },
       { label: "Buy", value: "Buy" },
       { label: "Other", value: "Other" },
     ];
     const option1 = [
-      { label: "* Select Type Of Product", value: 0 },
+      { label: "* Select Type Of Product", value: "" },
       { label: "Housing", value: "Housing" },
       { label: "Land", value: "Land" },
       { label: "Apartment", value: "Apartment" },
@@ -112,7 +134,7 @@ class AddItem extends Component {
                       name="type"
                       value={this.state.type}
                       onChange={this.onChange}
-                      error={errors.status}
+                      error={errors.type}
                       info="Provide The Type Of Products "
                     />
                     <TextFieldGroup
@@ -173,9 +195,21 @@ class AddItem extends Component {
                         placeholder="Choose Your Main Picture"
                         onChange={this.mainOnChange}
                       />
-                      <small className="form-text text-muted">
-                        Select The Main Picture
-                      </small>
+
+                      {errors.main ? (
+                        <div
+                          style={{
+                            fontSize: "12px",
+                            color: "red",
+                          }}
+                        >
+                          {errors.main}
+                        </div>
+                      ) : (
+                        <small className="form-text text-muted">
+                          Select The Main Picture
+                        </small>
+                      )}
                     </div>
                     <div className="form-group">
                       <input
@@ -186,9 +220,20 @@ class AddItem extends Component {
                         onChange={this.imageOnChange}
                         multiple
                       />
-                      <small className="form-text text-muted">
-                        Select The Other Images You Have Of The Property
-                      </small>
+                      {errors.others ? (
+                        <div
+                          style={{
+                            fontSize: "12px",
+                            color: "red",
+                          }}
+                        >
+                          {errors.others}
+                        </div>
+                      ) : (
+                        <small className="form-text text-muted">
+                          Select The Other Images You Have Of The Property
+                        </small>
+                      )}
                     </div>
 
                     <input
