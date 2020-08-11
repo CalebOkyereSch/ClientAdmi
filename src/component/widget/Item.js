@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import styles from "./item.css";
 import { Link, withRouter } from "react-router-dom";
-import { deleteProduct } from "../../actions/productActions";
+import { deleteProduct, setProdUpdate } from "../../actions/productActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 class Item extends Component {
+  onClick(data, id) {
+    this.props.setProdUpdate(id, data);
+  }
+
   render() {
+    const { product } = this.props.product;
     return (
       <div className="col-lg-4 col-md-6 mb-4">
         <div className="card h-100">
@@ -60,7 +65,7 @@ class Item extends Component {
             <Link
               to="/update-product"
               className="btn btn-sm btn-dark"
-              // onClick={() => this.props.getItem(this.props.id)}
+              onClick={() => this.props.setProdUpdate(this.props.id, product)}
             >
               Update
             </Link>
@@ -73,6 +78,12 @@ class Item extends Component {
 
 Item.propTypes = {
   deleteProduct: PropTypes.func.isRequired,
+  setProdUpdate: PropTypes.func.isRequired,
+  product: PropTypes.object.isRequired,
 };
 
-export default connect(null, { deleteProduct })(Item);
+const mapStateToProps = (state) => ({
+  product: state.product,
+});
+
+export default connect(mapStateToProps, { deleteProduct, setProdUpdate })(Item);

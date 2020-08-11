@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import db from "../../db.json";
 import CartItem from "../../component/widget/CartItem";
 import Layout from "../../component/layout/Layout";
 import { getOrder } from "../../actions/orderActions";

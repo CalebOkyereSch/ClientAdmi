@@ -1,6 +1,6 @@
 // Add to Cart  and  view item
 import axios from "axios";
-import { GET_ITEM, ITEM_LOADING, GET_CURRENT_USER, GET_ERRORS } from "./types";
+import { GET_ITEM, ITEM_LOADING, GET_ERRORS } from "./types";
 
 // get current user cart
 
